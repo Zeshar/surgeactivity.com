@@ -1,0 +1,626 @@
+<?php
+
+/* ZesharCRMCoreBundle:CRUD/DisplayPartial:lead_opportunity_show_prequalification.html.twig */
+class __TwigTemplate_7d4a37a7f18d6c4c282b7f706a63107b9ecf9c03feb3d685a6ee2638d312ed7f extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->parent = false;
+
+        $this->blocks = array(
+        );
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        // line 1
+        echo "<div class=\"custom-block custom-block-prequalification\">
+    <script type=\"text/javascript\">
+        (function(\$) {
+            \$(document).ready(function() {
+//                \$('#lead_prequalification_save').on('block-data-validate', function(e, params) {
+//                    var values = params.values;
+//                        //var eventDate = new Date(eventDate);
+//                        // @TODO check past date/time
+//
+//                });
+                \$('#lead_prequalification_save').on('block-ajax-return', function(e, serverResponse) {
+                    console.log('ajax response', serverResponse);
+//                    \$(this).find('input').not('[type=\"hidden\"]').val('').trigger('change');
+                    window.location.reload(); // todo - insert data without reload
+                });
+            });
+        })(jQuery);
+    </script>
+
+    <div class=\"custom-head clearfix\">
+        <div class=\"custom-menu\">
+            <button class=\"up-custom close\"></button>
+        </div>
+        <h3>General Info</h3>
+    </div>
+
+    <div id=\"lead_prequalification_save\" class=\"form-column display-block-persistent\" data-controller=\"leads_display\" data-action=\"leadPrequalification\" style=\"display: none;\">
+        <div class=\"form-group\">
+            <label for=\"source\">Product</label>
+
+            ";
+        // line 31
+        echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("ZesharCRMCoreBundle:FormItems:leadCategorySelect", array("activeId" => (( !twig_test_empty($this->getAttribute(        // line 32
+(isset($context["object"]) ? $context["object"] : null), "getLeadCategory", array(), "method"))) ? ($this->getAttribute($this->getAttribute((isset($context["object"]) ? $context["object"] : null), "getLeadCategory", array(), "method"), "getId", array(), "method")) : (null)))));
+        // line 33
+        echo "
+        </div>
+        <div class=\"custom-form-head clear-fix\">
+            <div class=\"custom-menu\">
+                <button class=\"up-custom up-custom-auto close\"></button>
+            </div>
+            <h3>Auto</h3>
+        </div>
+        ";
+        // line 41
+        $context["autos"] = $this->getAttribute((isset($context["object"]) ? $context["object"] : null), "getPrequalificationAutos", array(), "method");
+        // line 42
+        echo "        ";
+        $context["opportunity"] = $this->env->getExtension('zeshar_crm_core')->checkOpportunityType((isset($context["object"]) ? $context["object"] : null));
+        // line 43
+        echo "        ";
+        $context["lead"] = $this->env->getExtension('zeshar_crm_core')->checkLeadType((isset($context["object"]) ? $context["object"] : null));
+        // line 44
+        echo "        <div style=\"display:none;\">
+            <div class=\"custom-form-content\" data-prototype=' ";
+        // line 45
+        echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("ZesharCRMCoreBundle:FormItems:leadPrequalificationAutoBlock"));
+        echo " '>
+                ";
+        // line 46
+        if (twig_test_empty((isset($context["autos"]) ? $context["autos"] : null))) {
+            // line 47
+            echo "                    ";
+            echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("ZesharCRMCoreBundle:FormItems:leadPrequalificationAutoBlock", array("last" => true, "single" => true, "first" => true)));
+            // line 51
+            echo "
+
+                ";
+        } else {
+            // line 54
+            echo "                    ";
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["autos"]) ? $context["autos"] : null));
+            $context['loop'] = array(
+              'parent' => $context['_parent'],
+              'index0' => 0,
+              'index'  => 1,
+              'first'  => true,
+            );
+            if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
+                $length = count($context['_seq']);
+                $context['loop']['revindex0'] = $length - 1;
+                $context['loop']['revindex'] = $length;
+                $context['loop']['length'] = $length;
+                $context['loop']['last'] = 1 === $length;
+            }
+            foreach ($context['_seq'] as $context["_key"] => $context["auto"]) {
+                // line 55
+                echo "
+                        ";
+                // line 56
+                if ($this->getAttribute($context["loop"], "last", array())) {
+                    // line 57
+                    echo "                            ";
+                    $context["last"] = true;
+                    // line 58
+                    echo "                        ";
+                } else {
+                    // line 59
+                    echo "                            ";
+                    $context["last"] = false;
+                    // line 60
+                    echo "                        ";
+                }
+                // line 61
+                echo "
+                        ";
+                // line 62
+                if ($this->getAttribute($context["loop"], "first", array())) {
+                    // line 63
+                    echo "                            ";
+                    $context["first"] = true;
+                    // line 64
+                    echo "                        ";
+                } else {
+                    // line 65
+                    echo "                            ";
+                    $context["first"] = false;
+                    // line 66
+                    echo "                        ";
+                }
+                // line 67
+                echo "
+                        ";
+                // line 68
+                $context["single"] = false;
+                // line 69
+                echo "
+                        ";
+                // line 70
+                echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("ZesharCRMCoreBundle:FormItems:leadPrequalificationAutoBlock", array("last" =>                 // line 71
+(isset($context["last"]) ? $context["last"] : null), "first" =>                 // line 72
+(isset($context["first"]) ? $context["first"] : null), "single" =>                 // line 73
+(isset($context["single"]) ? $context["single"] : null), "autoYear" => $this->getAttribute(                // line 74
+$context["auto"], "year", array()), "autoMake" => $this->getAttribute(                // line 75
+$context["auto"], "make", array()), "autoModel" => $this->getAttribute(                // line 76
+$context["auto"], "model", array()), "autoVinNumber" => $this->getAttribute(                // line 77
+$context["auto"], "vinNumber", array()), "id" => $this->getAttribute(                // line 78
+$context["auto"], "id", array()))));
+                // line 79
+                echo "
+                    ";
+                ++$context['loop']['index0'];
+                ++$context['loop']['index'];
+                $context['loop']['first'] = false;
+                if (isset($context['loop']['length'])) {
+                    --$context['loop']['revindex0'];
+                    --$context['loop']['revindex'];
+                    $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+                }
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['auto'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 81
+            echo "                ";
+        }
+        // line 82
+        echo "            </div>
+            <div class=\"custom-form-content-auto-previous\">
+                <label for=\"source\" style=\"padding-top: 10px;\">Previous carrier</label>
+                <div class=\"form-group\">
+                    <label for=\"name\">Name</label>
+                    <input type=\"text\" name=\"previous_carrier_name\" id=\"name\" class=\"form-control\" value=\"";
+        // line 87
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["object"]) ? $context["object"] : null), "getPreviousCarrierName", array(), "method"), "html", null, true);
+        echo "\" />
+                </div>
+                <div class=\"form-group\">
+                    <label for=\"compaign\">Policy №</label>
+                    <input type=\"text\" name=\"previous_carrier_police\" id=\"compaign\" class=\"form-control\" value=\"";
+        // line 91
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["object"]) ? $context["object"] : null), "getPreviousCarrierPolice", array(), "method"), "html", null, true);
+        echo "\" />
+                </div>
+                <div class=\"form-group\">
+                    <label for=\"xdate\">X-Date</label>
+                    <input type=\"text\" id=\"xdate\" class=\"form-control datepicker-product\" name=\"pckr1\"  value=\"";
+        // line 95
+        echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["object"]) ? $context["object"] : null), "getPreviousCarrierXDate", array(), "method"), "M d, Y"), "html", null, true);
+        echo "\" />
+                </div>
+            </div>
+        </div>
+
+        <div class=\"additional-block prequalification-drive-group\">
+            <div class=\"custom-form-head clear-fix\">
+                <div class=\"custom-menu\">
+                    <button class=\"up-custom close\"></button>
+                </div>
+                <h3>Driver</h3>
+            </div>
+            ";
+        // line 107
+        $context["drivers"] = $this->getAttribute((isset($context["object"]) ? $context["object"] : null), "getPrequalificationDrivers", array(), "method");
+        // line 108
+        echo "            <div class=\"custom-form-content\" style=\"display:none;\" data-prototype=' ";
+        echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("ZesharCRMCoreBundle:FormItems:leadPrequalificationDriverBlock"));
+        echo " ' >
+                ";
+        // line 109
+        if (twig_test_empty((isset($context["drivers"]) ? $context["drivers"] : null))) {
+            // line 110
+            echo "
+                    ";
+            // line 111
+            echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("ZesharCRMCoreBundle:FormItems:leadPrequalificationDriverBlock", array("last" => true, "single" => true)));
+            // line 114
+            echo "
+                ";
+        } else {
+            // line 116
+            echo "                    ";
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["drivers"]) ? $context["drivers"] : null));
+            $context['loop'] = array(
+              'parent' => $context['_parent'],
+              'index0' => 0,
+              'index'  => 1,
+              'first'  => true,
+            );
+            if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
+                $length = count($context['_seq']);
+                $context['loop']['revindex0'] = $length - 1;
+                $context['loop']['revindex'] = $length;
+                $context['loop']['length'] = $length;
+                $context['loop']['last'] = 1 === $length;
+            }
+            foreach ($context['_seq'] as $context["_key"] => $context["driver"]) {
+                // line 117
+                echo "
+                        ";
+                // line 118
+                if ($this->getAttribute($context["loop"], "last", array())) {
+                    // line 119
+                    echo "                            ";
+                    $context["last"] = true;
+                    // line 120
+                    echo "                        ";
+                } else {
+                    // line 121
+                    echo "                            ";
+                    $context["last"] = false;
+                    // line 122
+                    echo "                        ";
+                }
+                // line 123
+                echo "
+                        ";
+                // line 124
+                $context["single"] = false;
+                // line 125
+                echo "
+                        ";
+                // line 126
+                echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("ZesharCRMCoreBundle:FormItems:leadPrequalificationDriverBlock", array("last" =>                 // line 127
+(isset($context["last"]) ? $context["last"] : null), "single" =>                 // line 128
+(isset($context["single"]) ? $context["single"] : null), "name" => $this->getAttribute(                // line 129
+$context["driver"], "name", array()), "dob" => $this->getAttribute(                // line 130
+$context["driver"], "dob", array()), "license" => $this->getAttribute(                // line 131
+$context["driver"], "license", array()), "ageLicensed" => $this->getAttribute(                // line 132
+$context["driver"], "ageLicensed", array()), "tickets" => $this->getAttribute(                // line 133
+$context["driver"], "tickets", array()), "id" => $this->getAttribute(                // line 134
+$context["driver"], "id", array()))));
+                // line 135
+                echo "
+
+                    ";
+                ++$context['loop']['index0'];
+                ++$context['loop']['index'];
+                $context['loop']['first'] = false;
+                if (isset($context['loop']['length'])) {
+                    --$context['loop']['revindex0'];
+                    --$context['loop']['revindex'];
+                    $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+                }
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['driver'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 138
+            echo "                ";
+        }
+        // line 139
+        echo "            </div>
+        </div>
+
+        <div class=\"additional-block last\">
+            <div class=\"custom-form-head clear-fix\">
+                <div class=\"custom-menu\">
+                    <button class=\"up-custom close\"></button>
+                </div>
+                <h3>Insured Address</h3>
+            </div>
+            ";
+        // line 149
+        $context["insuredAddresses"] = $this->getAttribute((isset($context["object"]) ? $context["object"] : null), "getPrequalificationInsuredAddresses", array(), "method");
+        // line 150
+        echo "            <div class=\"custom-form-content\" style=\"display:none;\" data-prototype=' ";
+        echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("ZesharCRMCoreBundle:FormItems:leadPrequalificationInsuredAddressBlock"));
+        echo " ' >
+                ";
+        // line 151
+        if (twig_test_empty((isset($context["insuredAddresses"]) ? $context["insuredAddresses"] : null))) {
+            // line 152
+            echo "                    ";
+            echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("ZesharCRMCoreBundle:FormItems:leadPrequalificationInsuredAddressBlock", array("last" => true, "single" => true)));
+            // line 155
+            echo "
+                ";
+        } else {
+            // line 157
+            echo "                    ";
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["insuredAddresses"]) ? $context["insuredAddresses"] : null));
+            $context['loop'] = array(
+              'parent' => $context['_parent'],
+              'index0' => 0,
+              'index'  => 1,
+              'first'  => true,
+            );
+            if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
+                $length = count($context['_seq']);
+                $context['loop']['revindex0'] = $length - 1;
+                $context['loop']['revindex'] = $length;
+                $context['loop']['length'] = $length;
+                $context['loop']['last'] = 1 === $length;
+            }
+            foreach ($context['_seq'] as $context["_key"] => $context["insuredAddress"]) {
+                // line 158
+                echo "
+                        ";
+                // line 159
+                if ($this->getAttribute($context["loop"], "last", array())) {
+                    // line 160
+                    echo "                            ";
+                    $context["last"] = true;
+                    // line 161
+                    echo "                        ";
+                } else {
+                    // line 162
+                    echo "                            ";
+                    $context["last"] = false;
+                    // line 163
+                    echo "                        ";
+                }
+                // line 164
+                echo "
+                        ";
+                // line 165
+                $context["single"] = false;
+                // line 166
+                echo "
+                        ";
+                // line 167
+                echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("ZesharCRMCoreBundle:FormItems:leadPrequalificationInsuredAddressBlock", array("previousCarrierPolice" => $this->getAttribute(                // line 168
+$context["insuredAddress"], "previousCarrierPolice", array()), "previousCarrierXDate" => $this->getAttribute(                // line 169
+$context["insuredAddress"], "previousCarrierXDate", array()), "previousCarrierName" => $this->getAttribute(                // line 170
+$context["insuredAddress"], "previousCarrierName", array()), "last" =>                 // line 171
+(isset($context["last"]) ? $context["last"] : null), "single" =>                 // line 172
+(isset($context["single"]) ? $context["single"] : null), "type" => $this->getAttribute(                // line 173
+$context["insuredAddress"], "type", array()), "address" => $this->getAttribute(                // line 174
+$context["insuredAddress"], "address", array()), "state" => $this->getAttribute(                // line 175
+$context["insuredAddress"], "state", array()), "zipCode" => $this->getAttribute(                // line 176
+$context["insuredAddress"], "zipCode", array()), "city" => $this->getAttribute(                // line 177
+$context["insuredAddress"], "city", array()), "id" => $this->getAttribute(                // line 178
+$context["insuredAddress"], "id", array()))));
+                // line 179
+                echo "
+
+                    ";
+                ++$context['loop']['index0'];
+                ++$context['loop']['index'];
+                $context['loop']['first'] = false;
+                if (isset($context['loop']['length'])) {
+                    --$context['loop']['revindex0'];
+                    --$context['loop']['revindex'];
+                    $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+                }
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['insuredAddress'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 182
+            echo "                ";
+        }
+        // line 183
+        echo "            </div>
+        </div>
+        <input type=\"hidden\" id=\"lead_id\" name=\"lead_id\" value=\"";
+        // line 185
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["object"]) ? $context["object"] : null), "getId", array(), "method"), "html", null, true);
+        echo "\" />
+        ";
+        // line 186
+        $this->loadTemplate("ZesharCRMCoreBundle:CRUD:DisplayPartial/lead_opportunity_show_block_actions.html.twig", "ZesharCRMCoreBundle:CRUD/DisplayPartial:lead_opportunity_show_prequalification.html.twig", 186)->display(array_merge($context, array("show_cancel_link" => false)));
+        // line 187
+        echo "    </div>
+
+</div>
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "ZesharCRMCoreBundle:CRUD/DisplayPartial:lead_opportunity_show_prequalification.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  416 => 187,  414 => 186,  410 => 185,  406 => 183,  403 => 182,  387 => 179,  385 => 178,  384 => 177,  383 => 176,  382 => 175,  381 => 174,  380 => 173,  379 => 172,  378 => 171,  377 => 170,  376 => 169,  375 => 168,  374 => 167,  371 => 166,  369 => 165,  366 => 164,  363 => 163,  360 => 162,  357 => 161,  354 => 160,  352 => 159,  349 => 158,  331 => 157,  327 => 155,  324 => 152,  322 => 151,  317 => 150,  315 => 149,  303 => 139,  300 => 138,  284 => 135,  282 => 134,  281 => 133,  280 => 132,  279 => 131,  278 => 130,  277 => 129,  276 => 128,  275 => 127,  274 => 126,  271 => 125,  269 => 124,  266 => 123,  263 => 122,  260 => 121,  257 => 120,  254 => 119,  252 => 118,  249 => 117,  231 => 116,  227 => 114,  225 => 111,  222 => 110,  220 => 109,  215 => 108,  213 => 107,  198 => 95,  191 => 91,  184 => 87,  177 => 82,  174 => 81,  159 => 79,  157 => 78,  156 => 77,  155 => 76,  154 => 75,  153 => 74,  152 => 73,  151 => 72,  150 => 71,  149 => 70,  146 => 69,  144 => 68,  141 => 67,  138 => 66,  135 => 65,  132 => 64,  129 => 63,  127 => 62,  124 => 61,  121 => 60,  118 => 59,  115 => 58,  112 => 57,  110 => 56,  107 => 55,  89 => 54,  84 => 51,  81 => 47,  79 => 46,  75 => 45,  72 => 44,  69 => 43,  66 => 42,  64 => 41,  54 => 33,  52 => 32,  51 => 31,  19 => 1,);
+    }
+}
+/* <div class="custom-block custom-block-prequalification">*/
+/*     <script type="text/javascript">*/
+/*         (function($) {*/
+/*             $(document).ready(function() {*/
+/* //                $('#lead_prequalification_save').on('block-data-validate', function(e, params) {*/
+/* //                    var values = params.values;*/
+/* //                        //var eventDate = new Date(eventDate);*/
+/* //                        // @TODO check past date/time*/
+/* //*/
+/* //                });*/
+/*                 $('#lead_prequalification_save').on('block-ajax-return', function(e, serverResponse) {*/
+/*                     console.log('ajax response', serverResponse);*/
+/* //                    $(this).find('input').not('[type="hidden"]').val('').trigger('change');*/
+/*                     window.location.reload(); // todo - insert data without reload*/
+/*                 });*/
+/*             });*/
+/*         })(jQuery);*/
+/*     </script>*/
+/* */
+/*     <div class="custom-head clearfix">*/
+/*         <div class="custom-menu">*/
+/*             <button class="up-custom close"></button>*/
+/*         </div>*/
+/*         <h3>General Info</h3>*/
+/*     </div>*/
+/* */
+/*     <div id="lead_prequalification_save" class="form-column display-block-persistent" data-controller="leads_display" data-action="leadPrequalification" style="display: none;">*/
+/*         <div class="form-group">*/
+/*             <label for="source">Product</label>*/
+/* */
+/*             {{ render(controller('ZesharCRMCoreBundle:FormItems:leadCategorySelect', {*/
+/*                 'activeId': object.getLeadCategory() is not empty ? object.getLeadCategory().getId() : NULL*/
+/*             })) }}*/
+/*         </div>*/
+/*         <div class="custom-form-head clear-fix">*/
+/*             <div class="custom-menu">*/
+/*                 <button class="up-custom up-custom-auto close"></button>*/
+/*             </div>*/
+/*             <h3>Auto</h3>*/
+/*         </div>*/
+/*         {% set autos = object.getPrequalificationAutos() %}*/
+/*         {% set opportunity = object|opportunity %}*/
+/*         {% set lead = object|lead %}*/
+/*         <div style="display:none;">*/
+/*             <div class="custom-form-content" data-prototype=' {{ render(controller('ZesharCRMCoreBundle:FormItems:leadPrequalificationAutoBlock')) }} '>*/
+/*                 {% if(autos is empty) %}*/
+/*                     {{ render(controller('ZesharCRMCoreBundle:FormItems:leadPrequalificationAutoBlock', {*/
+/*                         'last': true,*/
+/*                         'single': true,*/
+/*                         'first': true,*/
+/*                     })) }}*/
+/* */
+/*                 {% else %}*/
+/*                     {% for auto in autos %}*/
+/* */
+/*                         {% if loop.last %}*/
+/*                             {% set last = true %}*/
+/*                         {% else %}*/
+/*                             {% set last = false %}*/
+/*                         {% endif %}*/
+/* */
+/*                         {% if loop.first %}*/
+/*                             {% set first = true %}*/
+/*                         {% else %}*/
+/*                             {% set first = false %}*/
+/*                         {% endif %}*/
+/* */
+/*                         {% set single = false %}*/
+/* */
+/*                         {{ render(controller('ZesharCRMCoreBundle:FormItems:leadPrequalificationAutoBlock', {*/
+/*                             'last': last,*/
+/*                             'first': first,*/
+/*                             'single': single,*/
+/*                             'autoYear': auto.year,*/
+/*                             'autoMake': auto.make,*/
+/*                             'autoModel': auto.model,*/
+/*                             'autoVinNumber': auto.vinNumber,*/
+/*                             'id': auto.id*/
+/*                         })) }}*/
+/*                     {% endfor %}*/
+/*                 {% endif %}*/
+/*             </div>*/
+/*             <div class="custom-form-content-auto-previous">*/
+/*                 <label for="source" style="padding-top: 10px;">Previous carrier</label>*/
+/*                 <div class="form-group">*/
+/*                     <label for="name">Name</label>*/
+/*                     <input type="text" name="previous_carrier_name" id="name" class="form-control" value="{{ object.getPreviousCarrierName() }}" />*/
+/*                 </div>*/
+/*                 <div class="form-group">*/
+/*                     <label for="compaign">Policy №</label>*/
+/*                     <input type="text" name="previous_carrier_police" id="compaign" class="form-control" value="{{ object.getPreviousCarrierPolice() }}" />*/
+/*                 </div>*/
+/*                 <div class="form-group">*/
+/*                     <label for="xdate">X-Date</label>*/
+/*                     <input type="text" id="xdate" class="form-control datepicker-product" name="pckr1"  value="{{ object.getPreviousCarrierXDate()|date('M d, Y') }}" />*/
+/*                 </div>*/
+/*             </div>*/
+/*         </div>*/
+/* */
+/*         <div class="additional-block prequalification-drive-group">*/
+/*             <div class="custom-form-head clear-fix">*/
+/*                 <div class="custom-menu">*/
+/*                     <button class="up-custom close"></button>*/
+/*                 </div>*/
+/*                 <h3>Driver</h3>*/
+/*             </div>*/
+/*             {% set drivers = object.getPrequalificationDrivers() %}*/
+/*             <div class="custom-form-content" style="display:none;" data-prototype=' {{ render(controller('ZesharCRMCoreBundle:FormItems:leadPrequalificationDriverBlock')) }} ' >*/
+/*                 {% if(drivers is empty ) %}*/
+/* */
+/*                     {{ render(controller('ZesharCRMCoreBundle:FormItems:leadPrequalificationDriverBlock', {*/
+/*                     'last': true,*/
+/*                     'single': true*/
+/*                     })) }}*/
+/*                 {% else %}*/
+/*                     {% for driver in drivers %}*/
+/* */
+/*                         {% if loop.last %}*/
+/*                             {% set last = true %}*/
+/*                         {% else %}*/
+/*                             {% set last = false %}*/
+/*                         {% endif %}*/
+/* */
+/*                         {% set single = false %}*/
+/* */
+/*                         {{ render(controller('ZesharCRMCoreBundle:FormItems:leadPrequalificationDriverBlock', {*/
+/*                             'last': last,*/
+/*                             'single': single,*/
+/*                             'name': driver.name,*/
+/*                             'dob': driver.dob,*/
+/*                             'license': driver.license,*/
+/*                             'ageLicensed': driver.ageLicensed,*/
+/*                             'tickets': driver.tickets,*/
+/*                             'id': driver.id*/
+/*                         })) }}*/
+/* */
+/*                     {% endfor %}*/
+/*                 {% endif %}*/
+/*             </div>*/
+/*         </div>*/
+/* */
+/*         <div class="additional-block last">*/
+/*             <div class="custom-form-head clear-fix">*/
+/*                 <div class="custom-menu">*/
+/*                     <button class="up-custom close"></button>*/
+/*                 </div>*/
+/*                 <h3>Insured Address</h3>*/
+/*             </div>*/
+/*             {% set insuredAddresses = object.getPrequalificationInsuredAddresses() %}*/
+/*             <div class="custom-form-content" style="display:none;" data-prototype=' {{ render(controller('ZesharCRMCoreBundle:FormItems:leadPrequalificationInsuredAddressBlock')) }} ' >*/
+/*                 {% if(insuredAddresses is empty ) %}*/
+/*                     {{ render(controller('ZesharCRMCoreBundle:FormItems:leadPrequalificationInsuredAddressBlock', {*/
+/*                     'last': true,*/
+/*                     'single': true*/
+/*                     })) }}*/
+/*                 {% else %}*/
+/*                     {% for insuredAddress in insuredAddresses %}*/
+/* */
+/*                         {% if loop.last %}*/
+/*                             {% set last = true %}*/
+/*                         {% else %}*/
+/*                             {% set last = false %}*/
+/*                         {% endif %}*/
+/* */
+/*                         {% set single = false %}*/
+/* */
+/*                         {{ render(controller('ZesharCRMCoreBundle:FormItems:leadPrequalificationInsuredAddressBlock', {*/
+/*                             'previousCarrierPolice': insuredAddress.previousCarrierPolice,*/
+/*                             'previousCarrierXDate': insuredAddress.previousCarrierXDate,*/
+/*                             'previousCarrierName': insuredAddress.previousCarrierName,*/
+/*                             'last': last,*/
+/*                             'single': single,*/
+/*                             'type': insuredAddress.type,*/
+/*                             'address': insuredAddress.address,*/
+/*                             'state': insuredAddress.state,*/
+/*                             'zipCode': insuredAddress.zipCode,*/
+/*                             'city': insuredAddress.city,*/
+/*                             'id': insuredAddress.id*/
+/*                         })) }}*/
+/* */
+/*                     {% endfor %}*/
+/*                 {% endif %}*/
+/*             </div>*/
+/*         </div>*/
+/*         <input type="hidden" id="lead_id" name="lead_id" value="{{ object.getId() }}" />*/
+/*         {%  include('ZesharCRMCoreBundle:CRUD:DisplayPartial/lead_opportunity_show_block_actions.html.twig') with {'show_cancel_link': false} %}*/
+/*     </div>*/
+/* */
+/* </div>*/
+/* */
