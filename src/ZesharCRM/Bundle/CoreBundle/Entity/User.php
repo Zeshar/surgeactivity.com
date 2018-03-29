@@ -824,5 +824,4 @@ class User extends BaseUser
     {
         $this->disabled = $disabled;
     }
-
 }

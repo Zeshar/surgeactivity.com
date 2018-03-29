@@ -64,7 +64,7 @@ class HttpClient
         $xmlResponse = "";
 
         $post_url = $this->_getPostUrl();
-        $curl_request = curl_init($post_url);    
+        $curl_request = curl_init($post_url);
         curl_setopt($curl_request, CURLOPT_POSTFIELDS, $xmlRequest);
         curl_setopt($curl_request, CURLOPT_HEADER, 0);
         curl_setopt($curl_request, CURLOPT_TIMEOUT, 45);

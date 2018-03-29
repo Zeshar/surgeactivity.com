@@ -2,27 +2,40 @@
 
 namespace ZesharCRM\Bundle\CoreBundle\Service;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\ORM\EntityManager;
-
 use net\authorize\api\contract\v1 as AnetAPI;
 use net\authorize\api\controller as AnetController;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 define("AUTHORIZENET_LOG_FILE", "phplog");
 
 class ADNService
 {
-
-    /** @var ContainerInterface */
-    private $container;
     /** @var EntityManager */
     private $em;
 
-    public function __construct(ContainerInterface $container)
+    /**
+     * @var array
+     */
+    private $credentials;
+
+    public function __construct(EntityManager $manager)
     {
-        $this->container = $container;
-        $this->em = $container->get('doctrine.orm.entity_manager');
+        $this->em = $manager;
+        $paramRepo = $this->em->getRepository('ZesharCRMCoreBundle:Parameter');
+
+        $name = $paramRepo->findOneBy(['name' => 'ADN_LOGIN_ID']);
+        if ($name === null) {
+            throw new \Exception('Parameter ADN_LOGIN_ID not found');
+        }
+        $transactionKey = $paramRepo->findOneBy(['name' => 'ADN_TRANSACTION_KEY']);
+        if ($name === null) {
+            throw new \Exception('Parameter ADN_TRANSACTION_KEY not found');
+        }
+
+        $this->credentials = [
+            'name' => $name,
+            'transactionKey' => $transactionKey
+        ];
     }
 
     public function ADNAuthentication($user, $params = array())
@@ -31,7 +44,8 @@ class ADNService
         $responseArr = array('success' => false, 'message' => '');
 
         /** @var $userBillingInfo \ZesharCRM\Bundle\CoreBundle\Entity\BillingInfo */
-        $userBillingInfo = $this->em->getRepository('ZesharCRMCoreBundle:BillingInfo')->findOneBy(array('creator' => $user->getId()));
+        $userBillingInfo = $this->em->getRepository('ZesharCRMCoreBundle:BillingInfo')
+            ->findOneBy(array('creator' => $user->getId()));
 
         // Common setup for API credentials
         $merchantAuthentication = $this->setMerchantAuthentication();
@@ -86,10 +100,12 @@ class ADNService
         $user = $this->em->getRepository('ZesharCRMCoreBundle:User')->findOneBy(array('id' => $params['userId']));
 
         /** @var $userCreditCard \ZesharCRM\Bundle\CoreBundle\Entity\CreditCard */
-        $userCreditCard = $this->em->getRepository('ZesharCRMCoreBundle:CreditCard')->findOneBy(array('owner' => $params['userId']));
+        $userCreditCard = $this->em->getRepository('ZesharCRMCoreBundle:CreditCard')
+            ->findOneBy(array('owner' => $params['userId']));
 
         /** @var $userBillingInfo \ZesharCRM\Bundle\CoreBundle\Entity\BillingInfo */
-        $userBillingInfo = $this->em->getRepository('ZesharCRMCoreBundle:BillingInfo')->findOneBy(array('creator' => $params['userId']));
+        $userBillingInfo = $this->em->getRepository('ZesharCRMCoreBundle:BillingInfo')
+            ->findOneBy(array('creator' => $params['userId']));
 
 
         // Common setup for API credentials
@@ -190,7 +206,8 @@ class ADNService
             $responseArr['success'] = true;
         } else {
             $responseArr['message'] = "ERROR :  Invalid response. Create customer profile.";
-            $responseArr['message'] .= "Response : " . $response->getMessages()->getMessage()[0]->getCode() . "  " . $response->getMessages()->getMessage()[0]->getText() . "\n";
+            $responseArr['message'] .= "Response : " . $response->getMessages()->getMessage()[0]->getCode() . "  "
+                . $response->getMessages()->getMessage()[0]->getText() . "\n";
 
         }
 
@@ -269,7 +286,8 @@ class ADNService
             $responseArr['success'] = true;
         } else {
             $responseArr['message'] = "ERROR :  Invalid response";
-            $responseArr['message'] .= "Response : " . $response->getMessages()->getMessage()[0]->getCode() . "  " . $response->getMessages()->getMessage()[0]->getText();
+            $responseArr['message'] .= "Response : " . $response->getMessages()->getMessage()[0]->getCode() . "  "
+                . $response->getMessages()->getMessage()[0]->getText();
         }
 
         return $responseArr;
@@ -306,7 +324,7 @@ class ADNService
             $dateDiff = $nowDate - $lastPaymentDate;
             $paidDays = floor($dateDiff / (60 * 60 * 24));
 
-            if (!$billingFrequency) {
+            if ( ! $billingFrequency) {
                 //months
                 $frequency = 31;
                 $userInterval = 31;
@@ -389,11 +407,13 @@ class ADNService
         $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
 
         if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-            $responseArr['message'] = "SUCCESS" . $response->getMessages()->getMessage()[0]->getCode() . "  " . $response->getMessages()->getMessage()[0]->getText();
+            $responseArr['message'] = "SUCCESS" . $response->getMessages()->getMessage()[0]->getCode() . "  "
+                . $response->getMessages()->getMessage()[0]->getText();
             $responseArr['success'] = true;
         } else {
             $responseArr['message'] = "ERROR :  Invalid response";
-            $responseArr['message'] .= "Response : " . $response->getMessages()->getMessage()[0]->getCode() . "  " . $response->getMessages()->getMessage()[0]->getText();
+            $responseArr['message'] .= "Response : " . $response->getMessages()->getMessage()[0]->getCode() . "  "
+                . $response->getMessages()->getMessage()[0]->getText();
         }
 
         return $responseArr;
@@ -430,7 +450,8 @@ class ADNService
             } else {
                 // Error
                 $responseArr['message'] = "ERROR :  Invalid response ";
-                $responseArr['message'] .= "Response : " . $response->getMessages()->getMessage()[0]->getCode() . "  " . $response->getMessages()->getMessage()[0]->getText();
+                $responseArr['message'] .= "Response : " . $response->getMessages()->getMessage()[0]->getCode() . "  "
+                    . $response->getMessages()->getMessage()[0]->getText();
 
             }
         } else {
@@ -461,11 +482,13 @@ class ADNService
         $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
 
         if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-            $responseArr['message'] = "SUCCESS" . $response->getMessages()->getMessage()[0]->getCode() . "  " . $response->getMessages()->getMessage()[0]->getText();
+            $responseArr['message'] = "SUCCESS" . $response->getMessages()->getMessage()[0]->getCode() . "  "
+                . $response->getMessages()->getMessage()[0]->getText();
             $responseArr['success'] = true;
         } else {
             $responseArr['message'] = "ERROR :  Invalid response";
-            $responseArr['message'] .= "Response : " . $response->getMessages()->getMessage()[0]->getCode() . "  " . $response->getMessages()->getMessage()[0]->getText();
+            $responseArr['message'] .= "Response : " . $response->getMessages()->getMessage()[0]->getCode() . "  "
+                . $response->getMessages()->getMessage()[0]->getText();
 
         }
 
@@ -512,9 +535,12 @@ class ADNService
             }
         } else {
             echo "ERROR :  Invalid response\n";
-            echo "Response : " . $response->getMessages()->getMessage()[0]->getCode() . "  " . $response->getMessages()->getMessage()[0]->getText() . "\n";
+            echo "Response : " . $response->getMessages()->getMessage()[0]->getCode() . "  " . $response->getMessages()
+                                                                                                   ->getMessage()[0]->getText()
+                . "\n";
 
         }
+
         return $responseArr;
     }
 
@@ -522,8 +548,8 @@ class ADNService
     private function setMerchantAuthentication()
     {
         $merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
-        $merchantAuthentication->setName($this->container->getParameter('ADN_LOGIN_ID'));
-        $merchantAuthentication->setTransactionKey($this->container->getParameter('ADN_TRANSACTION_KEY'));
+        $merchantAuthentication->setName($this->credentials['name']);
+        $merchantAuthentication->setTransactionKey($this->credentials['transactionKey']);
 
         return $merchantAuthentication;
     }

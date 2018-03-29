@@ -47,7 +47,7 @@ class ImportCSVService extends BaseBlockService
         $settings = array_merge($this->getDefaultSettings(), $blockContext->getSettings());
 
         $curBlock = 'ZesharCRMCoreBundle:Block:block_importCSV.html.twig';
-        if (!$this->container->get('security.context')->isGranted("ROLE_SUPER_ADMIN")) {
+        if (!$this->container->get('security.context')->isGranted("ROLE_SUPER_ADMIN") && !$this->container->get('security.context')->isGranted("ROLE_ULTRA_ADMIN")) {
             $curBlock = 'ZesharCRMCoreBundle:Block:block_empty.html.twig';
         }
 

@@ -123,7 +123,9 @@ class DashboardController extends Controller
             $billingInfo = $admin->getBillingInfo();
             if(!empty($billingInfo)){
                 $billingInfo = $billingInfo[0];
-                $productType = $billingInfo->getSubscriptionProduct()->getProductType();
+				if($billingInfo){
+					$productType = $billingInfo->getSubscriptionProduct()->getProductType();
+				}
             }
         }
 

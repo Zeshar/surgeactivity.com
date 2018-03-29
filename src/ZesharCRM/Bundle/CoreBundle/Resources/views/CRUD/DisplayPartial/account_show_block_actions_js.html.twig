@@ -138,16 +138,7 @@
         data['cardLastName'] = $('#cardLastName').val();
         data['cardNumber'] = $('#cardNumber').val();
         data['cardCode'] = $('#cardCode').val();
-        data['acceptTerms'] = $('#acceptTerms').val();
         data['amount'] = $('#amount').val();
-
-        if ($('#acceptTerms').is(":checked")){
-            data['acceptTerms'] = 1;
-        }else{
-            data['acceptTerms'] = 0;
-            error = true;
-            messages.push('You should accept Terms and Privacy Policy.');
-        }
 
         $('.form-control').each(function(){
             if($(this).val() == ''){
@@ -183,7 +174,6 @@
                 'success': function (response) {
                     console.log('ajax success');
                     form.reset();
-                    location.reload();
                 },
                 'error': function (error) {
                     //messages = error.responseJSON.message;
