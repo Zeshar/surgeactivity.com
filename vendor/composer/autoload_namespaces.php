@@ -35,7 +35,6 @@ return array(
     'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib'),
     'Ddeboer\\DataImportBundle' => array($vendorDir . '/ddeboer/data-import-bundle'),
     'Ddeboer\\DataImport' => array($vendorDir . '/ddeboer/data-import/src'),
-    'ComponentInstaller' => array($vendorDir . '/robloach/component-installer/src'),
     'Behat\\Transliterator' => array($vendorDir . '/behat/transliterator/src'),
     'Assetic' => array($vendorDir . '/kriswallsmith/assetic/src'),
     '' => array($baseDir . '/src'),

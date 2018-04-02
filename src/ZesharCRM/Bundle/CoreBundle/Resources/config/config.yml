@@ -17,7 +17,7 @@ sonata_block:
         #sonata.media.block.gallery:
         #sonata.media.block.feature_media:
 
-        zeshar_crm_core.block.importcsv: ~
+        zeshar_crm_core.block.importcsv: 
         zeshar_crm_core.block.admin_list: ~
         zeshar_crm_core.block.deleted_lead_list: ~
 
@@ -32,7 +32,12 @@ fos_user:
 
     service:
         user_manager: sonata.user.orm.user_manager
-
+    registration:
+        confirmation:
+            enabled: true
+    from_email:
+        address:      %from_email.address%
+        sender_name:  %from_email.sender_name%
 
 sonata_user:
     security_acl: true

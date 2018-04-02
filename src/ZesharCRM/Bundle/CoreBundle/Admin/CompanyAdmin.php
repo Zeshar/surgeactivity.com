@@ -19,6 +19,17 @@ class CompanyAdmin extends CLAdmin
     protected $baseRouteName = 'admin_company';
     protected $baseRoutePattern = 'company';
 
+    public function getTemplate($name)
+    {
+        switch ($name) {
+            case 'list':
+                return 'ZesharCRMCoreBundle:CompanyCRUD:list.html.twig';
+                break;
+            default:
+                return parent::getTemplate($name);
+                break;
+        }
+    }
 
     public function __construct($code, $class, $baseControllerName)
     {

@@ -12,9 +12,7 @@
 {% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
     <ul {% if item.parent is empty %}class="menu"{% endif %} {{ _self.attributes(listAttributes) }}>
         {% if item.parent is empty %} {# only fot root level - output notifications, profile info and "add" button #}
-            <li style="width: 260px;">
-                <img src="{{ asset('images/logo2.png') }}" alt="" width="41px">
-                <p class="title-logo">Surge<span>Activity</span></p>
+            <li style="width: 260px;height: 44px !important;">
             </li>
         {% endif %}
         {{ block('children') }}
@@ -83,4 +81,4 @@
 {% endblock %}
     
 {% block linkElement %}<a class="{% if item.hasChildren %}drop-link {% endif %}{{ item.linkAttributes('class')|join(' ') }}" href="{{ item.uri }}">{{ block('label') }}</a>{% endblock %}
-{% block spanElement %}<a class="{% if item.hasChildren %}drop-link {% endif %}{{ item.labelAttributes('class')|join(' ') }}" href="javascript:void();">{{ block('label') }}</a>{% endblock %}
+{% block spanElement %}<a class="{% if item.hasChildren %}drop-link {% endif %}{{ item.labelAttributes('class')|join(' ') }}" href="javascript:void(0);">{{ block('label') }}</a>{% endblock %}

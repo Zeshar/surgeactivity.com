@@ -16,6 +16,7 @@ use ZesharCRM\Bundle\CoreBundle\Enum\BillingSubscriptionStatus;
 use ZesharCRM\Bundle\CoreBundle\Enum\BillingSubscriptionProducts;
 use ZesharCRM\Bundle\CoreBundle\Enum\CreditCardTypes;
 use Sonata\AdminBundle\Controller\CRUDController as CRUDController;
+use ZesharCRM\Bundle\CoreBundle\Event\UserEvent;
 
 
 class AccountInfoBlocksController extends Controller
@@ -106,50 +107,52 @@ class AccountInfoBlocksController extends Controller
             // add new company to the database
             $this->company = $this->saveCompany($params);
             // add new user to the database
+            $params['password'] = $this->getPassword();
             $this->user = $this->saveUser($params);
             // add new billing plan to the database
-            $this->billingInfo = $this->saveBillingInfo($params);
+            //$this->billingInfo = $this->saveBillingInfo($params);
             // add new credit card to the database
-            $this->creditCard = $this->saveCreditCard($params);
-            $em->flush();
-
+            //$this->creditCard = $this->saveCreditCard($params);
+            //$em->flush();
+            // todo: unsecure, but that guy wanted it so bad
+            $this->container->get('event_dispatcher')->dispatch(UserEvent::ACCOUNT_CREATED, new UserEvent($this->user, ['password' => $params['password']]));
             // Charge Credit Card - Authorize and Capture
-            $ADNService = $this->container->get('zeshar_crm_core.adn');
-
-            $auth = $ADNService->ADNAuthentication($this->user, $params);
-
-            if($auth['success']){
-                $profile = $ADNService->ADNCreateCustomerProfile($this->user, $params);
-
-                if($profile['success']) {
-                    //$subscription = $ADNService->ADNCancelSubscription(3071464);
-                    $subscription = $ADNService->ADNCreateSubscription($this->user, $params, false);
-
-                    if ($subscription['success']) {
-                        $this->creditCard->setAuthCode($auth['authCode']);
-                        $this->creditCard->setTransId($auth['transId']);
-                        $this->creditCard->setProfileId($profile['profileId']);
-                        $this->creditCard->setPaymentProfileId($profile['paymentProfileId']);
-                        $this->creditCard->setRefId($profile['refId']);
-
-                        $this->billingInfo->setSubscriptionId((int)$subscription['subscriptionId']);
-
-                        $em->persist($this->creditCard);
-                        $em->persist($this->billingInfo);
-
-                        $session->set('successMsg', 'Thank you very much!
-                                                         We have received your signup request. You will get an e-mail
-                                                         with credentials as soon as the request is processed.
-                                     ');
-                    } else {
-                        $isFailed = true;
-                    }
-                }else{
-                    $isFailed = true;
-                }
-            }else{
-                $isFailed = true;
-            }
+//            $ADNService = $this->container->get('zeshar_crm_core.adn');
+//
+//            $auth = $ADNService->ADNAuthentication($this->user, $params);
+//
+//            if($auth['success']){
+//                $profile = $ADNService->ADNCreateCustomerProfile($this->user, $params);
+//
+//                if($profile['success']) {
+//                    //$subscription = $ADNService->ADNCancelSubscription(3071464);
+//                    $subscription = $ADNService->ADNCreateSubscription($this->user, $params, false);
+//
+//                    if ($subscription['success']) {
+//                        $this->creditCard->setAuthCode($auth['authCode']);
+//                        $this->creditCard->setTransId($auth['transId']);
+//                        $this->creditCard->setProfileId($profile['profileId']);
+//                        $this->creditCard->setPaymentProfileId($profile['paymentProfileId']);
+//                        $this->creditCard->setRefId($profile['refId']);
+//
+//                        $this->billingInfo->setSubscriptionId((int)$subscription['subscriptionId']);
+//
+//                        $em->persist($this->creditCard);
+//                        $em->persist($this->billingInfo);
+//
+//                        $session->set('successMsg', 'Thank you very much!
+//                                                         We have received your signup request. You will get an e-mail
+//                                                         with credentials as soon as the request is processed.
+//                                     ');
+//                    } else {
+//                        $isFailed = true;
+//                    }
+//                }else{
+//                    $isFailed = true;
+//                }
+//            }else{
+//                $isFailed = true;
+//            }
         }else{
             $isFailed = true;
         }
@@ -283,14 +286,15 @@ class AccountInfoBlocksController extends Controller
         $userManager = $this->container->get('fos_user.user_manager');
 
         $user = new User();
-        $user->setEnabled(0);
+        $user->setEnabled(1);
+        $user->setConfirmationToken($this->get('fos_user.util.token_generator')->generateToken());
         $user->setFirstName($params['firstName']);
         $user->setLastName($params['lastName']);
         $user->setUsername($params['userName']);
         $user->setEmail($params['email']);
         $user->setRoles(array('ROLE_SUPER_ADMIN'));
         $user->setCompany($this->company);
-        $user->setPlainPassword($this->getPassword());
+        $user->setPlainPassword($params['password']);
         $userManager->updateUser($user, true);
 
         $this->getDoctrine()->getManager()->persist($user);

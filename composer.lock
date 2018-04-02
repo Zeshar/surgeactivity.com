@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8bf3b31425055c51386c3dc4a563ccdd",
-    "content-hash": "9a69d02b5ed7d03ef45ef64c1f469e28",
+    "content-hash": "d49a1395a87d4ab08bc602e35a4858f0",
     "packages": [
         {
             "name": "authorizenet/authorizenet",
@@ -56,7 +55,7 @@
                 "ecommerce",
                 "payment"
             ],
-            "time": "2015-06-01 20:24:57"
+            "time": "2015-06-01T20:24:57+00:00"
         },
         {
             "name": "behat/transliterator",
@@ -96,7 +95,7 @@
                 "slug",
                 "transliterator"
             ],
-            "time": "2015-09-28 16:26:35"
+            "time": "2015-09-28T16:26:35+00:00"
         },
         {
             "name": "cocur/slugify",
@@ -159,7 +158,7 @@
                 "slug",
                 "slugify"
             ],
-            "time": "2015-09-29 18:26:32"
+            "time": "2015-09-29T18:26:32+00:00"
         },
         {
             "name": "ddeboer/data-import",
@@ -228,7 +227,7 @@
                 "export",
                 "import"
             ],
-            "time": "2015-04-21 14:06:20"
+            "time": "2015-04-21T14:06:20+00:00"
         },
         {
             "name": "ddeboer/data-import-bundle",
@@ -272,7 +271,7 @@
                 "csv",
                 "import"
             ],
-            "time": "2014-04-04 11:01:36"
+            "time": "2014-04-04T11:01:36+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -340,7 +339,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2015-08-31 12:32:49"
+            "time": "2015-08-31T12:32:49+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -410,7 +409,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-12-19 05:03:47"
+            "time": "2015-12-19T05:03:47+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -476,7 +475,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2015-04-14 22:21:58"
+            "time": "2015-04-14T22:21:58+00:00"
         },
         {
             "name": "doctrine/common",
@@ -549,7 +548,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2015-12-04 12:49:42"
+            "time": "2015-12-04T12:49:42+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -620,7 +619,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2015-09-16 16:29:33"
+            "time": "2015-09-16T16:29:33+00:00"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -698,7 +697,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2015-11-16 17:11:46"
+            "time": "2015-11-16T17:11:46+00:00"
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -785,32 +784,35 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-11-27 04:59:07"
+            "time": "2015-11-27T04:59:07+00:00"
         },
         {
             "name": "doctrine/doctrine-migrations-bundle",
-            "version": "dev-master",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineMigrationsBundle.git",
-                "reference": "86d2b1c9c195c12175551d02a475067977c0afcf"
+                "reference": "a9e506369f931351a2a6dd2aef588a822802b1b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/c0a2f5d069e56e2ac7a42719dfda63fd996a39ed",
-                "reference": "86d2b1c9c195c12175551d02a475067977c0afcf",
+                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/a9e506369f931351a2a6dd2aef588a822802b1b7",
+                "reference": "a9e506369f931351a2a6dd2aef588a822802b1b7",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "~1.0",
-                "doctrine/migrations": "~1.0",
+                "doctrine/migrations": "^1.1",
                 "php": ">=5.4.0",
-                "symfony/framework-bundle": "~2.3|~3.0"
+                "symfony/framework-bundle": "~2.7|~3.3|~4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.36"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.3-dev"
                 }
             },
             "autoload": {
@@ -843,7 +845,7 @@
                 "migrations",
                 "schema"
             ],
-            "time": "2015-11-12 13:18:26"
+            "time": "2017-11-01T09:13:26+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -910,7 +912,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2015-11-06 14:35:42"
+            "time": "2015-11-06T14:35:42+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -964,7 +966,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2015-06-14 21:17:01"
+            "time": "2015-06-14T21:17:01+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -1018,7 +1020,7 @@
                 "lexer",
                 "parser"
             ],
-            "time": "2014-09-09 13:34:57"
+            "time": "2014-09-09T13:34:57+00:00"
         },
         {
             "name": "doctrine/migrations",
@@ -1030,7 +1032,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/20e25bd5037512a270bc8dee36e02fbd17a5e222",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/9d866f93b665a161bd0f978aeb8b5ea3c124eaa7",
                 "reference": "9d866f93b665a161bd0f978aeb8b5ea3c124eaa7",
                 "shasum": ""
             },
@@ -1086,7 +1088,7 @@
                 "database",
                 "migrations"
             ],
-            "time": "2015-12-18 16:23:44"
+            "time": "2015-12-18T16:23:44+00:00"
         },
         {
             "name": "doctrine/orm",
@@ -1163,7 +1165,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2015-11-23 12:44:25"
+            "time": "2015-11-23T12:44:25+00:00"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -1249,7 +1251,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2015-12-20 13:45:30"
+            "time": "2015-12-20T13:45:30+00:00"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -1316,7 +1318,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2015-06-01 00:57:03"
+            "time": "2015-06-01T00:57:03+00:00"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -1328,7 +1330,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/8eae0903abfe8cfac2715018d807637bb92bbfc5",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/7e7fc55fa3fad79031727fbc7d8e418b641be875",
                 "reference": "7e7fc55fa3fad79031727fbc7d8e418b641be875",
                 "shasum": ""
             },
@@ -1395,7 +1397,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2015-12-18 20:34:21"
+            "time": "2015-12-18T20:34:21+00:00"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1446,7 +1448,7 @@
             "keywords": [
                 "parameters management"
             ],
-            "time": "2015-11-10 17:04:01"
+            "time": "2015-11-10T17:04:01+00:00"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -1488,7 +1490,7 @@
                 "hashing",
                 "password"
             ],
-            "time": "2014-11-20 16:49:30"
+            "time": "2014-11-20T16:49:30+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1538,7 +1540,7 @@
                 "highlight",
                 "sql"
             ],
-            "time": "2014-01-12 16:20:24"
+            "time": "2014-01-12T16:20:24+00:00"
         },
         {
             "name": "jms/metadata",
@@ -1590,7 +1592,7 @@
                 "xml",
                 "yaml"
             ],
-            "time": "2014-07-12 07:13:19"
+            "time": "2014-07-12T07:13:19+00:00"
         },
         {
             "name": "jms/parser-lib",
@@ -1625,7 +1627,7 @@
                 "Apache2"
             ],
             "description": "A library for easily creating recursive-descent parsers.",
-            "time": "2012-11-18 18:08:43"
+            "time": "2012-11-18T18:08:43+00:00"
         },
         {
             "name": "jms/serializer",
@@ -1695,7 +1697,7 @@
             "support": {
                 "source": "https://github.com/goetas/serializer/tree/xsd2php"
             },
-            "time": "2015-04-04 09:15:12"
+            "time": "2015-04-04T09:15:12+00:00"
         },
         {
             "name": "jms/serializer-bundle",
@@ -1765,7 +1767,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2013-12-05 14:36:11"
+            "time": "2013-12-05T14:36:11+00:00"
         },
         {
             "name": "knplabs/knp-menu",
@@ -1830,7 +1832,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2015-09-20 08:23:47"
+            "time": "2015-09-20T08:23:47+00:00"
         },
         {
             "name": "knplabs/knp-menu-bundle",
@@ -1887,7 +1889,7 @@
             "keywords": [
                 "menu"
             ],
-            "time": "2015-12-15 12:06:23"
+            "time": "2015-12-15T12:06:23+00:00"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -1964,7 +1966,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2015-11-12 13:51:40"
+            "time": "2015-11-12T13:51:40+00:00"
         },
         {
             "name": "luxifer/doctrine-functions",
@@ -2012,7 +2014,7 @@
                 "dql",
                 "mysql"
             ],
-            "time": "2015-11-09 11:01:17"
+            "time": "2015-11-09T11:01:17+00:00"
         },
         {
             "name": "michelf/php-markdown",
@@ -2063,7 +2065,7 @@
             "keywords": [
                 "markdown"
             ],
-            "time": "2015-03-01 12:03:08"
+            "time": "2015-03-01T12:03:08+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2140,7 +2142,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-10-14 12:51:02"
+            "time": "2015-10-14T12:51:02+00:00"
         },
         {
             "name": "nelmio/api-doc-bundle",
@@ -2224,7 +2226,7 @@
                 "documentation",
                 "rest"
             ],
-            "time": "2015-12-08 13:19:42"
+            "time": "2015-12-08T13:19:42+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -2272,7 +2274,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2015-12-10 14:48:13"
+            "time": "2015-12-10T14:48:13+00:00"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -2322,7 +2324,7 @@
                 "sequence",
                 "set"
             ],
-            "time": "2014-03-11 13:46:42"
+            "time": "2014-03-11T13:46:42+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -2372,7 +2374,7 @@
                 "php",
                 "type"
             ],
-            "time": "2015-07-25 16:39:46"
+            "time": "2015-07-25T16:39:46+00:00"
         },
         {
             "name": "psr/log",
@@ -2410,7 +2412,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2012-12-21 11:40:51"
+            "time": "2012-12-21T11:40:51+00:00"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -2456,7 +2458,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2015-06-05 22:32:08"
+            "time": "2015-06-05T22:32:08+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -2511,7 +2513,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2015-12-18 17:39:27"
+            "time": "2015-12-18T17:39:27+00:00"
         },
         {
             "name": "sensio/generator-bundle",
@@ -2559,7 +2561,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2015-03-17 06:36:52"
+            "time": "2015-03-17T06:36:52+00:00"
         },
         {
             "name": "sonata-project/admin-bundle",
@@ -2644,7 +2646,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2015-12-14 17:05:23"
+            "time": "2015-12-14T17:05:23+00:00"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -2710,7 +2712,7 @@
                 "block",
                 "sonata"
             ],
-            "time": "2015-07-28 09:30:13"
+            "time": "2015-07-28T09:30:13+00:00"
         },
         {
             "name": "sonata-project/cache",
@@ -2773,7 +2775,7 @@
                 "mongodb",
                 "redis"
             ],
-            "time": "2015-09-18 14:40:58"
+            "time": "2015-09-18T14:40:58+00:00"
         },
         {
             "name": "sonata-project/core-bundle",
@@ -2842,7 +2844,7 @@
             "keywords": [
                 "sonata"
             ],
-            "time": "2015-11-26 19:14:27"
+            "time": "2015-11-26T19:14:27+00:00"
         },
         {
             "name": "sonata-project/datagrid-bundle",
@@ -2899,7 +2901,7 @@
                 "datagrid",
                 "sonata"
             ],
-            "time": "2015-12-16 08:53:13"
+            "time": "2015-12-16T08:53:13+00:00"
         },
         {
             "name": "sonata-project/doctrine-extensions",
@@ -2948,7 +2950,7 @@
                 "doctrine2",
                 "json"
             ],
-            "time": "2014-02-14 12:45:49"
+            "time": "2014-02-14T12:45:49+00:00"
         },
         {
             "name": "sonata-project/doctrine-orm-admin-bundle",
@@ -3018,7 +3020,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2015-09-21 13:04:26"
+            "time": "2015-09-21T13:04:26+00:00"
         },
         {
             "name": "sonata-project/easy-extends-bundle",
@@ -3077,7 +3079,7 @@
                 "Easy Extends",
                 "sonata"
             ],
-            "time": "2015-12-02 22:24:42"
+            "time": "2015-12-02T22:24:42+00:00"
         },
         {
             "name": "sonata-project/exporter",
@@ -3138,7 +3140,7 @@
                 "export",
                 "xls"
             ],
-            "time": "2014-09-11 09:05:40"
+            "time": "2014-09-11T09:05:40+00:00"
         },
         {
             "name": "sonata-project/google-authenticator",
@@ -3188,7 +3190,7 @@
             "keywords": [
                 "google authenticator"
             ],
-            "time": "2014-03-31 09:18:53"
+            "time": "2014-03-31T09:18:53+00:00"
         },
         {
             "name": "sonata-project/user-bundle",
@@ -3266,7 +3268,7 @@
                 "sonata",
                 "user"
             ],
-            "time": "2015-12-04 14:04:04"
+            "time": "2015-12-04T14:04:04+00:00"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -3278,7 +3280,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stof/StofDoctrineExtensionsBundle/zipball/4e7499d25dc5d0862da09fa8e336164948a29a25",
+                "url": "https://api.github.com/repos/stof/StofDoctrineExtensionsBundle/zipball/6672ca37fe19a8e2a8ae52a93a7163e1b00ef7d5",
                 "reference": "6672ca37fe19a8e2a8ae52a93a7163e1b00ef7d5",
                 "shasum": ""
             },
@@ -3327,7 +3329,7 @@
                 "translatable",
                 "tree"
             ],
-            "time": "2015-11-26 18:29:38"
+            "time": "2015-11-26T18:29:38+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3380,7 +3382,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2015-06-06 14:19:39"
+            "time": "2015-06-06T14:19:39+00:00"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -3450,7 +3452,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2015-11-17 09:45:47"
+            "time": "2015-11-17T09:45:47+00:00"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -3509,7 +3511,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2015-11-17 10:02:29"
+            "time": "2015-11-17T10:02:29+00:00"
         },
         {
             "name": "symfony/polyfill-apcu",
@@ -3562,7 +3564,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-03-03 16:49:40"
+            "time": "2016-03-03T16:49:40+00:00"
         },
         {
             "name": "symfony/polyfill-intl-icu",
@@ -3617,7 +3619,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2015-11-04 20:28:58"
+            "time": "2015-11-04T20:28:58+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -3673,7 +3675,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2015-11-04 20:28:58"
+            "time": "2015-11-04T20:28:58+00:00"
         },
         {
             "name": "symfony/polyfill-php54",
@@ -3731,7 +3733,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2015-11-04 20:28:58"
+            "time": "2015-11-04T20:28:58+00:00"
         },
         {
             "name": "symfony/polyfill-php55",
@@ -3787,7 +3789,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2015-11-04 20:28:58"
+            "time": "2015-11-04T20:28:58+00:00"
         },
         {
             "name": "symfony/polyfill-php56",
@@ -3843,7 +3845,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2015-11-04 20:28:58"
+            "time": "2015-11-04T20:28:58+00:00"
         },
         {
             "name": "symfony/polyfill-php70",
@@ -3902,7 +3904,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2015-11-04 20:28:58"
+            "time": "2015-11-04T20:28:58+00:00"
         },
         {
             "name": "symfony/polyfill-util",
@@ -3954,7 +3956,7 @@
                 "polyfill",
                 "shim"
             ],
-            "time": "2015-11-04 20:28:58"
+            "time": "2015-11-04T20:28:58+00:00"
         },
         {
             "name": "symfony/security-acl",
@@ -4014,7 +4016,7 @@
             ],
             "description": "Symfony Security Component - ACL (Access Control List)",
             "homepage": "https://symfony.com",
-            "time": "2015-11-18 13:41:01"
+            "time": "2015-11-18T13:41:01+00:00"
         },
         {
             "name": "symfony/swiftmailer-bundle",
@@ -4071,7 +4073,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2015-11-28 10:59:29"
+            "time": "2015-11-28T10:59:29+00:00"
         },
         {
             "name": "symfony/symfony",
@@ -4205,7 +4207,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-02-28 21:06:29"
+            "time": "2016-02-28T21:06:29+00:00"
         },
         {
             "name": "twig/extensions",
@@ -4257,7 +4259,7 @@
                 "i18n",
                 "text"
             ],
-            "time": "2015-08-22 16:38:35"
+            "time": "2015-08-22T16:38:35+00:00"
         },
         {
             "name": "twig/twig",
@@ -4318,7 +4320,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-11-05 12:49:06"
+            "time": "2015-11-05T12:49:06+00:00"
         },
         {
             "name": "twilio/sdk",
@@ -4368,7 +4370,7 @@
                 "sms",
                 "twilio"
             ],
-            "time": "2015-12-17 01:05:48"
+            "time": "2015-12-17T01:05:48+00:00"
         },
         {
             "name": "vresh/twilio-bundle",
@@ -4413,7 +4415,7 @@
             "keywords": [
                 "twilio"
             ],
-            "time": "2014-04-25 15:50:37"
+            "time": "2014-04-25T15:50:37+00:00"
         },
         {
             "name": "willdurand/jsonp-callback-validator",
@@ -4453,7 +4455,7 @@
                 }
             ],
             "description": "JSONP callback validator.",
-            "time": "2014-01-20 22:35:06"
+            "time": "2014-01-20T22:35:06+00:00"
         },
         {
             "name": "willdurand/negotiation",
@@ -4502,7 +4504,7 @@
                 "header",
                 "negotiation"
             ],
-            "time": "2015-10-01 07:42:40"
+            "time": "2015-10-01T07:42:40+00:00"
         }
     ],
     "packages-dev": [
@@ -4557,7 +4559,8 @@
                 "xmlschema",
                 "xsd"
             ],
-            "time": "2015-02-10 15:58:22"
+            "abandoned": "goetas-webservices/xsd-reader",
+            "time": "2015-02-10T15:58:22+00:00"
         },
         {
             "name": "goetas/xsd2php",
@@ -4569,7 +4572,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/goetas/xsd2php/zipball/5eb67848853d8e3693540e28d9a9692206b948d6",
+                "url": "https://api.github.com/repos/goetas/xsd2php/zipball/ecb7310e60b775a032ecd7f9160439b36385b032",
                 "reference": "ecb7310e60b775a032ecd7f9160439b36385b032",
                 "shasum": ""
             },
@@ -4617,7 +4620,8 @@
                 "xml",
                 "xsd"
             ],
-            "time": "2015-11-18 13:42:44"
+            "abandoned": "goetas-webservices/xsd2php",
+            "time": "2015-11-18T13:42:44+00:00"
         },
         {
             "name": "zendframework/zend-code",
@@ -4669,7 +4673,7 @@
                 "code",
                 "zf2"
             ],
-            "time": "2015-11-24 15:49:25"
+            "time": "2015-11-24T15:49:25+00:00"
         },
         {
             "name": "zendframework/zend-eventmanager",
@@ -4715,7 +4719,7 @@
                 "eventmanager",
                 "zf2"
             ],
-            "time": "2015-10-06 11:53:40"
+            "time": "2015-10-06T11:53:40+00:00"
         },
         {
             "name": "zendframework/zend-hydrator",
@@ -4771,7 +4775,7 @@
                 "hydrator",
                 "zf2"
             ],
-            "time": "2015-09-17 14:06:43"
+            "time": "2015-09-17T14:06:43+00:00"
         },
         {
             "name": "zendframework/zend-stdlib",
@@ -4829,7 +4833,7 @@
                 "stdlib",
                 "zf2"
             ],
-            "time": "2015-10-15 15:57:32"
+            "time": "2015-10-15T15:57:32+00:00"
         }
     ],
     "aliases": [
@@ -4843,7 +4847,6 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "doctrine/migrations": 20,
-        "doctrine/doctrine-migrations-bundle": 20,
         "gedmo/doctrine-extensions": 20,
         "stof/doctrine-extensions-bundle": 20,
         "sonata-project/block-bundle": 20,
@@ -4862,5 +4865,8 @@
         "php": ">=5.3.3",
         "ext-curl": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "platform-overrides": {
+        "php": "5.6"
+    }
 }

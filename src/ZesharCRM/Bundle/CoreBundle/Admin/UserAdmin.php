@@ -176,15 +176,19 @@ class UserAdmin extends Admin
 
 //        var_dump($this->getConfigurationPool()->getContainer()->getParameter('security.role_hierarchy.roles'));die;
         $rolesArr = $this->getRoles();
+        $user = $this->getLoggedInUser();
 
         $formMapper
             ->with('General')
-            ->add('username')
+            ->add('username');
 //            ->add('company', null, array(
 //                'label' => 'Company'
 //            ))
-            ->add('roles', 'choice',array('choices'=>$rolesArr,'multiple'=>true ))
-            ->add('email')
+        if (!$user->hasRole('ROLE_ULTRA_ADMIN')) {
+            $formMapper->add('roles', 'choice',array('choices'=>$rolesArr,'multiple'=>true, 'required' => false ));
+        }
+
+        $formMapper->add('email')
             ->add('plainPassword', 'text', array(
                 'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
             ))
@@ -289,6 +293,8 @@ class UserAdmin extends Admin
             // EDIT
             if($this->getSubject()->hasRole('ROLE_SUPER_ADMIN')){
                 return array('ROLE_SALES_PERSON'=>'ROLE_SALES_PERSON','ROLE_AGENCY_OWNER'=>'ROLE_AGENCY_OWNER','ROLE_SUPER_ADMIN'=>'ROLE_SUPER_ADMIN');
+			}elseif($this->getSubject()->hasRole('ROLE_ULTRA_ADMIN')){
+                 return array('ROLE_SALES_PERSON'=>'ROLE_SALES_PERSON','ROLE_AGENCY_OWNER'=>'ROLE_AGENCY_OWNER','ROLE_SUPER_ADMIN'=>'ROLE_SUPER_ADMIN');
             }else{
                 return array('ROLE_SALES_PERSON'=>'ROLE_SALES_PERSON','ROLE_AGENCY_OWNER'=>'ROLE_AGENCY_OWNER');
             }

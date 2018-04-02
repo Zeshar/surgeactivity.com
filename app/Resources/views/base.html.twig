@@ -18,6 +18,7 @@
         <script src="{{ asset('js/jquery-ui-1.10.4.custom.min.js') }}"></script>
         <script src="{{ asset('js/select2.min.js') }}"></script>
         <script src="{{ asset('js/actions.js') }}"></script>
+        <script src="{{ asset('js/menu.js') }}"></script>
         <script src="{{ asset('js/jquery.timepicker.min.js') }}"></script>
         <script src="{{ asset('js/jquery.tablesorter.js')}}"></script>
         <script src="{{ asset('js/jquery-loading.js') }}"></script>
@@ -40,8 +41,13 @@
         <div id="whole_page_loading" >
             <div class="wrapper">
                 <header>
-                    <div class="menu-wrap">
-                        {{ knp_menu_render('main', {'template': 'ZesharCRMCoreBundle::main_menu.html.twig'}) }}
+                    <div class="title-wrap-first">
+                        <nav class="navbar navbar-static-top first-top-wrap" style="height: 46px; position:relative; z-index: auto;" role="navigation">
+                          <div class="navbar__logo">
+                            <img src="/images/logo2.png" alt="" style="" width="41px">
+                            <p style="" class="title-logo">Surge<span>Activity</span></p>
+                            </div>
+                        </nav>
                     </div>
                     <div class="title-wrap">
                         {% if not is_granted('ROLE_ULTRA_ADMIN') %}
@@ -52,8 +58,12 @@
                 </header>
 
                 <div class="content clear-fix">
+                    <div class="menu-wrap">
+                        {{ knp_menu_render('main', {'template': 'ZesharCRMCoreBundle::main_menu.html.twig'}) }}
+                    </div>
                     {% block content %}
-                        {% if not is_granted('ROLE_ULTRA_ADMIN') %}
+                    {% if not is_granted('ROLE_ULTRA_ADMIN') %}
+                    <div class="page-content">
                             <div id="collapse-block" class="right-column">
                                     <div class="widget-wrap">
                                         {{ render(controller('ZesharCRMCoreBundle:Dashboard:showBlockWidget')) }}
@@ -64,6 +74,7 @@
                             </div>
                         {% endif %}
                     {% endblock %}
+                    </div>
                 </div>
 
             </div>

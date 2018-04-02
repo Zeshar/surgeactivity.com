@@ -1,0 +1,27 @@
+/.idea
+.DS_Store
+
+# Cache and logs
+/app/cache/*
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+/app/sessions/*
+!/app/sessions/.gitkeep
+
+# Parameters
+/app/config/parameters.yml
+/app/config/parameters.ini
+
+# Managed by Composer
+/app/bootstrap.php.cache
+/var/bootstrap.php.cache
+/bin/*
+!bin/console
+!bin/symfony_requirements
+/vendor
+
+# Assets and user uploads
+/components
+/web/bundles/
+/web/uploads/

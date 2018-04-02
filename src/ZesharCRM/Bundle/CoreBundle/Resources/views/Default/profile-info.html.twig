@@ -2,6 +2,9 @@
 <div class="drop-menu">
     <ul>
         <li><a class="disable" href="javascript:void(0);">{{ username }}</a></li>
+		{% if billingInfoId %}
+			<li><a class="" href="{{path('admin_billing_info_show', {'id': billingInfoId})}}">Account Setting</a></li>
+			{% endif %}
         <li><a href="{{ app.request.baseUrl }}/admin/logout">Logout</a></li>
     </ul>
 </div>

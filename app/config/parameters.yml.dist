@@ -13,3 +13,5 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+    from_email.address:     noreply@example.com
+    from_email.sender_name: support

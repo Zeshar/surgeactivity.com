@@ -116,7 +116,7 @@ var actionsInit = function($){
 
         var generalWrapper = $('.content');
 
-        if ($.cookie('isHideWidgets')) {
+        /*if ($.cookie('isHideWidgets')) {
             var filterWidget = $('.filter-widget');
             filterWidget.removeClass('hidden-widget');
             filterWidget.attr('value', 'Show widgets').html('Show widgets');
@@ -141,7 +141,7 @@ var actionsInit = function($){
                 $.removeCookie('isHideWidgets', { path: '/' });
             }
                 generalWrapper.find('#collapse-block').toggle();
-        });
+        });*/
 
         $(document).on('change','.column-visibility',function(){
             var choseAction = $(this).val();
@@ -162,6 +162,15 @@ $(function() {
     setTimeout(function(){
         actionsInit(jQuery)
     }, 15);
+});
+
+
+/** Menu animation **/
+$(".drop-link").click(function() {
+    alert('test');
+    $(this).next().toggle().slideDown( "slow", function() {
+        // Animation complete.
+    });
 });
 
 

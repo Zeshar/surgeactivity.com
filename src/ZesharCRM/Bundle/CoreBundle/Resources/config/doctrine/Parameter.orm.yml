@@ -1,0 +1,20 @@
+ZesharCRM\Bundle\CoreBundle\Entity\Parameter:
+    type: entity
+    table: parameters
+    repositoryClass: ZesharCRM\Bundle\CoreBundle\Entity\ParameterRepository
+    constraints:
+      - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            lenght: 100
+        value:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

@@ -2,6 +2,7 @@ parameters:
     account.security_listener.class: ZesharCRM\Bundle\CoreBundle\Listener\SecurityListener
     account.logout_handler.class: ZesharCRM\Bundle\CoreBundle\Listener\LogoutHandler
     account.login_handler.class: ZesharCRM\Bundle\CoreBundle\Listener\LoginHandler
+    account.registration_subscriber.class: ZesharCRM\Bundle\CoreBundle\Listener\RegistrationSubscriber
 
 services:
     core.service.lead_service:
@@ -250,6 +251,13 @@ services:
         class: ZesharCRM\Bundle\CoreBundle\Twig\Extension\ZesharCRMCoreExtension
         tags:
             - { name: twig.extension }
+
+    account.registration_listener:
+        class: %account.registration_subscriber.class%
+        arguments: ['@logger', '@mailer', '@templating.engine.twig', '@router', '%from_email.address%']
+        tags:
+            - { name: kernel.event_subscriber }
+
     account.security_listener:
             class: %account.security_listener.class%
             arguments: ['@security.context', '@service_container']
@@ -312,8 +320,13 @@ services:
     zeshar_crm_core.adn:
         class: ZesharCRM\Bundle\CoreBundle\Service\ADNService
         arguments:
-            container: "@service_container"
-            entity_manager: "@doctrine.orm.entity_manager"
+            - "@doctrine.orm.entity_manager"
 
     zeshar_crm_core.account_controller:
         class: ZesharCRM\Bundle\CoreBundle\Controller\AccountInfoBlocksController
+
+    zeshar_crm_core.admin.parameters:
+        class: ZesharCRM\Bundle\CoreBundle\Admin\ParameterAdmin
+        arguments: [~, ZesharCRM\Bundle\CoreBundle\Entity\Parameter, ZesharCRMCoreBundle:ParameterAdmin, '@doctrine.orm.entity_manager']
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Parameter}

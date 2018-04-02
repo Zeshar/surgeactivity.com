@@ -386,7 +386,7 @@ class Company
         $status = 'Inactive';
 
         $users = $this->users;
-        if(!empty($users)){
+        if($users->count() !== 0){
             $user = $users[0];
             $billingInfo = $user->getBillingInfo();
 

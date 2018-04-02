@@ -32,32 +32,75 @@ class MenuBuilder
             $user = 'anon.';
         }
 
-        $menu = $this->factory->createItem('root');
+            $menu = $this->factory->createItem('root', array(
+                'childrenAttributes'    => array(
+                    'class'             => 'foo',
+                ),
+            ));
             if (is_object($user) && in_array('ROLE_DISABLED_ADMIN', $user->getRoles())) {
                 //$menu->addChild('Dashboard', array('uri' => $request->getBaseUrl() . '/dashboard'));
                 $menu->addChild('Payment Update', array('uri' => $this->container->get('router')->generate('account_show', array('id' => $user->getId()))));
             }
             elseif (is_object($user) && in_array('ROLE_ULTRA_ADMIN', $user->getRoles())) {
                 $companyAdmin = $this->container->get('zeshar_crm_core.admin.company');
-                $menu->addChild('Dashboard', array('uri' => $request->getBaseUrl() . '/dashboard'));
+                /*$menu->addChild('Dashboard', array('uri' => $request->getBaseUrl() . '/dashboard'));
                 $menu->addChild('Companies', array('uri' => $companyAdmin->generateUrl('list')));
-                $menu->addChild('Accounts', array('uri' => $this->container->get('router')->generate('account_create')));
+                $menu->addChild('Accounts', array('uri' => $this->container->get('router')->generate('account_create')));*/
+
+				$this->items['accounts'] = $menu->addChild('Accounts', array('uri' => $companyAdmin->generateUrl('list')));
+//				$this->items['accounts']->addChild('View accounts' , array('uri' => $companyAdmin->generateUrl('list')))->setLinkAttribute('class', 'icon-link icon-2');
+//				$this->items['accounts']->addChild('Create accounts' , array('uri' => $this->container->get('router')->generate('account_create')))->setLinkAttribute('class', 'icon-link icon-1');
+
+				$this->items['products'] = $menu->addChild('Products');
+				$this->items['products']->addChild('Listing' , array('uri' => '#'))->setLinkAttribute('class', 'icon-link icon-2');
+                $this->items['products']->addChild('Expired Products' , array('uri' => '#'))->setLinkAttribute('class', 'icon-link icon-2');
+//				$this->items['products']->addChild('Create Products' , array('uri' => '/'))->setLinkAttribute('class', 'icon-link icon-1');
+                $this->items['leads'] = $menu->addChild('Lead Center');
+                $this->items['leads']->addChild('LeadPool' , array('uri' => '#'))->setLinkAttribute('class', 'icon-link icon-2');
+                $this->items['leads']->addChild('Import Leads' , array('uri' => '#'))->setLinkAttribute('class', 'icon-link icon-2');
+//				$this->items['leads']->addChild('Import CSV – Leads', array('uri' => $this->container->get('router')->generate('import_csv')));
+//              $this->buildLeadsSubmenu();
+
+				$this->items['settings'] = $menu->addChild('Settings');
+				$this->items['settings']->addChild('Users' , array('uri' => '#'))->setLinkAttribute('class', 'icon-link icon-2');
+				$this->items['settings']->addChild('Roles' , array('uri' => '#'))->setLinkAttribute('class', 'icon-link icon-2');
+				$this->items['settings']->addChild('Pricing' , array('uri' => '#'))->setLinkAttribute('class', 'icon-link icon-2');
+				$this->items['settings']->addChild('Parameters' , array('uri' => $this->container->get('router')->generate('admin_zesharcrm_core_parameter_list', array('id' => $user->getId()))))->setLinkAttribute('class', 'icon-link icon-2');
+				$this->items['settings']->addChild('Parameters' , array('uri' => $this->container->get('router')->generate('admin_zesharcrm_core_parameter_list', array('id' => $user->getId()))))->setLinkAttribute('class', 'icon-link icon-2');
+
             } elseif (is_object($user)) {
                 // core menu items
                 $menu->addChild('Dashboard', array('uri' => $request->getBaseUrl() . '/dashboard'));
                 $this->items['activities'] = $menu->addChild('Activities');
                 $this->buildActivitiesSubmenu();
-                $this->items['opportunities'] = $menu->addChild('Opportunities');
+
+
+                $this->items['opportunities'] = $menu->addChild('Opportunities', array('attributes' => array('style' => 'display:none')));
                 $this->buildOpportunitiesSubmenu();
-                $this->items['quotes'] = $menu->addChild('Quotes');
+
+
+				$this->items['my_leads'] = $menu->addChild('My Leads');
+                $this->buildMyLeadsSubmenu();
+
+                $this->items['quotes'] = $menu->addChild('Quotes', array('attributes' => array('style' => 'display:none')));
                 $this->buildQuotesSubmenu();
-                $this->items['leads'] = $menu->addChild('Lead Point');
+
+				$this->items['lead_center'] = $menu->addChild('Lead Center');
+
+                $this->items['lead_center']->addChild('Purchase Leads', array('uri' => '/'))->setLinkAttribute('class', 'icon-link icon-2');
+                $this->items['lead_center']->addChild('Import Leads', array('uri' => '/admin/importCsv'))->setLinkAttribute('class', 'icon-link icon-2');
+                $this->items['lead_center']->addChild('LeadPool', array('uri' => '/admin/zesharcrm/core/lead/listLeads'))->setLinkAttribute('class', 'icon-link icon-2');
+                $this->items['lead_center']->addChild('Deleted Activities', array('uri' => '/admin/zesharcrm/core/lead/listDeleted'))->setLinkAttribute('class', 'icon-link icon-2');
+
+                $this->items['leads'] = $menu->addChild('Lead Point', array('attributes' => array('style' => 'display:none')));
                 $this->buildLeadsSubmenu();
+
+
                 $this->items['leads']->addChild('Import CSV – Leads', array('uri' => $this->container->get('router')->generate('import_csv')));
                 $this->items['contacts'] = $menu->addChild('Contacts');
                 $this->buildContactsSubmenu();
                 $reportAdmin = $this->container->get('zeshar_crm_calls.admin.call_reporting');
-                $this->items['contacts']->addChild('Log A Call', array('uri' => $reportAdmin->generateUrl('create')))->setLinkAttribute('class', 'icon-link icon-2');
+               // $this->items['contacts']->addChild('Log A Call', array('uri' => $reportAdmin->generateUrl('create')))->setLinkAttribute('class', 'icon-link icon-2');
                 $this->items['Reports'] = $menu->addChild('Reports');
                 //        $this->items['leadPoints'] = $menu->addChild('LeadPoint');
                 //        $this->buildLeadPointsSubmenu($request->getBaseUrl());
@@ -70,26 +113,26 @@ class MenuBuilder
                 //        $menu->addChild('Account Info', array('uri' => '#'));
                 //        $menu->addChild('Help Center', array('uri' => '#'));
                 //        $this->items['History'] = $this->items['Reports']->addChild('History');
-                $this->buildSimpleSubmenu($this->items['Reports'],
-                    'zeshar_crm_core.admin.operation',
-                    'Change Log');
-                $this->buildSimpleSubmenu($this->items['Reports'],
-                    'zeshar_crm_core.admin.log',
-                    'Login Log');
-                $this->items['Reports']->addChild('Lead Contact History', array('uri' => $reportAdmin->generateUrl('list')));
-                $this->items['Reports']->addChild(' Lead performance', array('uri' => $this->container->get('router')->generate('reports_user_performance')));
+                //$this->buildSimpleSubmenu($this->items['Reports'],
+                //    'zeshar_crm_core.admin.operation',
+                //    'Change Log');
+               // $this->buildSimpleSubmenu($this->items['Reports'],
+                //    'zeshar_crm_core.admin.log',
+                //    'Login Log');
+               // $this->items['Reports']->addChild('Lead Contact History', array('uri' => $reportAdmin->generateUrl('list')));
+               // $this->items['Reports']->addChild(' Lead performance', array('uri' => $this->container->get('router')->generate('reports_user_performance')));
                 // if super admin - add link to admin panel
                 if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
                     $user = $this->container->get('security.context')->getToken()->getUser();
                     $billingInfo = $user->getBillingInfo();
 
-                    $this->items['Reports']->addChild('Conversion Rates', array('uri' => $this->container->get('router')->generate('reports_user_conversion')));
-                    $this->items['Admin'] = $menu->addChild('Admin', array('uri' => $request->getBaseUrl() . '/admin/dashboard'));
+                   // $this->items['Reports']->addChild('Conversion Rates', array('uri' => $this->container->get('router')->generate('reports_user_conversion')));
+                    $this->items['Admin'] = $menu->addChild('Admin');
 
-                    if ($billingInfo) {
+                    /*if ($billingInfo) {
                         $billingInfoId = $billingInfo[0]->getId();
-                        $this->items['Admin']->addChild('Account Setting', array('uri' => $this->container->get('router')->generate('admin_billing_info_show', array('id' => $billingInfoId))))->setLinkAttribute('class', 'icon-link icon-2'); // $this->container->get('router')->generate('reports_user_conversion')
-                    }
+                        //$this->items['Admin']->addChild('Account Setting', array('uri' => $this->container->get('router')->generate('admin_billing_info_show', array('id' => $billingInfoId))))->setLinkAttribute('class', 'icon-link icon-2'); // $this->container->get('router')->generate('reports_user_conversion')
+                    }*/
 
                     $this->buildAdminSubmenu($request->getBaseUrl());
                 }
@@ -104,9 +147,9 @@ class MenuBuilder
     public function buildActivitiesSubmenu()
     {
         $activityAdmin = $this->container->get('zeshar_crm_core.admin.activity');
-        $this->items['activities']->addChild('Activity Lead List' , array('uri' => $activityAdmin->generateUrl('list')))->setLinkAttribute('class', 'icon-link icon-2');
+        $this->items['activities']->addChild('Active Activities' , array('uri' => $activityAdmin->generateUrl('list')))->setLinkAttribute('class', 'icon-link icon-2');
         $activityAdmin = $this->container->get('zeshar_crm_core.admin.expiredactivity');
-        $this->items['activities']->addChild('Expired Activity Lead List' , array('uri' => $activityAdmin->generateUrl('list')))->setLinkAttribute('class', 'icon-link icon-2');
+        $this->items['activities']->addChild('Expired Activities' , array('uri' => $activityAdmin->generateUrl('list')))->setLinkAttribute('class', 'icon-link icon-2');
 
     }
 
@@ -120,6 +163,26 @@ class MenuBuilder
         $leadSourceAdmin = $this->container->get('zeshar_crm_core.admin.lead_source');
         //$leadCampaignAdmin = $this->container->get('zeshar_crm_core.admin.lead_campaign');
         $activityCampaignAdmin = $this->container->get('zeshar_crm_core.admin.activity');
+		/*$this->items['Admin']->addChild('Lead Management', array('uri' => '/'))->setLinkAttribute('class', 'icon-link icon-2');
+		$this->items['Admin']->addChild('User Management', array('uri' => '/'))->setLinkAttribute('class', 'icon-link icon-2');
+		$this->items['Admin']->addChild('Accounts Management', array('uri' => '/'))->setLinkAttribute('class', 'icon-link icon-2');*/
+
+        $this->items['Admin']->addChild('user_main', array( 'label' => 'Users', 'uri' => '#'))->setLinkAttribute('class', 'icon-link icon-2');
+        $this->items['Admin']->addChild('user', array( 'label' => 'Users', 'uri' => '/admin/user/list'))->setLinkAttribute('class', 'little-blue-menu');
+        $this->items['Admin']->addChild('Team', array('uri' => '/'))->setLinkAttribute('class', 'little-blue-menu');
+        $this->items['Admin']->addChild('Roles', array('uri' => '/'))->setLinkAttribute('class', 'little-blue-menu');
+
+        $this->items['Admin']->addChild('Accounts', array('uri' => '/admin/billing_info/73/show'))->setLinkAttribute('class', 'icon-link icon-2');
+
+        $this->items['Admin']->addChild('Lead', array('uri' => '#'))->setLinkAttribute('class', 'icon-link icon-2');
+        $this->items['Admin']->addChild('Lead Type', array('uri' => '/admin/zesharcrm/core/leadtype/list'))->setLinkAttribute('class', 'little-blue-menu top-separator');
+        $this->items['Admin']->addChild('Lead Source', array('uri' => '/admin/zesharcrm/core/leadsource/list'))->setLinkAttribute('class', 'little-blue-menu');
+        $this->items['Admin']->addChild('Event Type', array('uri' => '/admin/zesharcrm/core/leadeventtype/list'))->setLinkAttribute('class', 'little-blue-menu');
+        $this->items['Admin']->addChild('Products', array('uri' => '/admin/zesharcrm/core/leadcategory/list'))->setLinkAttribute('class', 'little-blue-menu top-separator');
+        $this->items['Admin']->addChild('Goals', array('uri' => '/admin/goals/'))->setLinkAttribute('class', 'little-blue-menu');
+        $this->items['Admin']->addChild('Lead Score Criteria', array('uri' => '/admin/zesharcrm/leadscoring/scoringcriteria/list'))->setLinkAttribute('class', 'little-blue-menu');
+        $this->items['Admin']->addChild('Email Templates', array('uri' => '/'))->setLinkAttribute('class', 'little-blue-menu');
+
 
         // $this->items['Admin']->addChild('Import BoB');
 //        $this->items['Admin']->addChild('Inactive Activities');
@@ -142,7 +205,7 @@ class MenuBuilder
 //            false
 //        );
     }
-    
+
     /**
      * Helper to build entities-specific submenu based on entity type
      * @param \Knp\Menu\ItemInterface $rootItem Item where to add children
@@ -161,7 +224,7 @@ class MenuBuilder
         if (!is_callable($itemTitleCallback) && !is_null($itemTitleCallback)) {
             throw new \BadMethodCallException('Item title callback must be either callable or null.');
         }
-        
+
         $entityAdmin = $this->container->get($adminServiceId);
         $router = $this->container->get('router');
 
@@ -184,7 +247,7 @@ class MenuBuilder
                 }
             }
         }
-        
+
         if ($listItemTitle) {
             if ($filter) {
                 $rootItem->addChild($listItemTitle, array('uri' => $entityAdmin->generateUrl($routeList, $filter)))->setLinkAttribute('class', 'icon-link icon-2');
@@ -208,7 +271,7 @@ class MenuBuilder
             $rootItem->addChild($createItemTitle, array('uri' => $entityAdmin->generateUrl('create')))->setLinkAttribute('class', 'icon-link icon-1');
         }
     }
-    
+
     private function buildLeadsSubmenu()
     {
         $fetchCallback = function() {
@@ -223,7 +286,7 @@ class MenuBuilder
                 return array();
             }
         };
-        
+
         $itemTitleCallback = function($lead) {
             $itemTitle = $lead->getName();
             if ($contactCard = $lead->getContactCard()) {
@@ -241,7 +304,7 @@ class MenuBuilder
             }
             return $itemTitle;
         };
-        
+
         $this->buildEntitiesSubmenu(
             $this->items['leads'],
             'zeshar_crm_core.admin.lead',
@@ -255,7 +318,61 @@ class MenuBuilder
             'listLeads'
         );
     }
-    
+
+
+	private function buildMyLeadsSubmenu()
+    {
+
+		$this->items['my_leads']->addChild('New Leads - 10' , array('uri' => '/'))->setLinkAttribute('class', 'icon-link icon-2')->setExtra('safe_label', true );
+		$this->items['my_leads']->addChild('Recycled Leads - 20' , array('uri' => '/'))->setLinkAttribute('class', 'icon-link icon-2')->setExtra('safe_label', true );
+		$this->items['my_leads']->addChild('X-Sale Leads - 100' , array('uri' => '/'))->setLinkAttribute('class', 'icon-link icon-2')->setExtra('safe_label', true );
+		//$this->items['my_leads']->addChild('Lead pool - 500' , array('uri' => '/'))->setLinkAttribute('class', 'icon-link icon-2')->setExtra('safe_label', true );
+		return;
+        $fetchCallback = function() {
+            if ($currentUser = $this->getCurrentLoggedInUser()) {
+                return $this
+                    ->container
+                    ->get('doctrine')
+                    ->getManager()
+                    ->getRepository('ZesharCRMCoreBundle:Lead')
+                    ->fetchLeadsByAssignee($currentUser);
+            } else {
+                return array();
+            }
+        };
+
+        $itemTitleCallback = function($lead) {
+            $itemTitle = $lead->getName();
+            if ($contactCard = $lead->getContactCard()) {
+                $firstName = $contactCard->getFirstName();
+                $lastName = $contactCard->getLastName();
+                if ($firstName || $lastName) {
+                    $itemTitle .= ' - ';
+                }
+                if ($firstName) {
+                    $itemTitle .= $firstName;
+                }
+                if ($lastName) {
+                    $itemTitle .= ' ' . $lastName;
+                }
+            }
+            return $itemTitle;
+        };
+
+        $this->buildEntitiesSubmenu(
+            $this->items['my_leads'],
+            'zeshar_crm_core.admin.lead',
+            $fetchCallback,
+            $itemTitleCallback,
+            'Lead Pool',
+            'Add New Lead',
+            5,
+            false,
+            array(),
+            'listLeads'
+        );
+    }
+
     private function buildOpportunitiesSubmenu()
     {
         $fetchCallback = function() {
@@ -270,7 +387,7 @@ class MenuBuilder
                 return array();
             }
         };
-        
+
         $itemTitleCallback = function($opportunity) {
             $itemTitle = array();
             if ($contactCard = $opportunity->getContactCard()) {
@@ -280,13 +397,13 @@ class MenuBuilder
             }
             return implode(' ', $itemTitle);
         };
-        
+
         $this->buildEntitiesSubmenu(
-                $this->items['opportunities'], 
-                'zeshar_crm_core.admin.opportunity', 
-                $fetchCallback, 
-                $itemTitleCallback, 
-                'View more opportunities', 
+                $this->items['opportunities'],
+                'zeshar_crm_core.admin.opportunity',
+                $fetchCallback,
+                $itemTitleCallback,
+                'View more opportunities',
                 null,
                 5,
                 true,
@@ -294,7 +411,11 @@ class MenuBuilder
                 'listOpportunity'
         );
     }
-    
+
+    private function buildPurchaseLeadsSubmenu() {
+
+    }
+
     private function buildQuotesSubmenu()
     {
         $fetchCallback = function() {
@@ -309,7 +430,7 @@ class MenuBuilder
                 return array();
             }
         };
-        
+
         $itemTitleCallback = function($opportunity) {
             $itemTitle = array();
             if ($contactCard = $opportunity->getContactCard()) {
@@ -328,11 +449,11 @@ class MenuBuilder
 //        } else {
 //            $filter = array();
 //        }
-        
+
         $this->buildEntitiesSubmenu(
-                $this->items['quotes'], 
+                $this->items['quotes'],
                 'zeshar_crm_core.admin.opportunity',
-                $fetchCallback, 
+                $fetchCallback,
                 $itemTitleCallback,
                 'View more quotes',
                 null,
@@ -343,9 +464,9 @@ class MenuBuilder
         );
 
         $this->buildEntitiesSubmenu(
-                $this->items['quotes'], 
+                $this->items['quotes'],
                 'zeshar_crm_core.admin.opportunity',
-                $fetchCallback, 
+                $fetchCallback,
                 $itemTitleCallback,
                 'Sold quotes',
                 null,
@@ -356,13 +477,13 @@ class MenuBuilder
         );
     }
 
-    private function buildContactsSubmenu()
+  private function buildContactsSubmenu()
     {
         $fetchCallback = function() {
             return array();
         };
 
-        $this->buildEntitiesSubmenu(
+        /* $this->buildEntitiesSubmenu(
             $this->items['contacts'],
             'zeshar_crm_core.admin.contact_card',
             $fetchCallback,
@@ -371,7 +492,7 @@ class MenuBuilder
             'Add new',
             5,
             false
-        );
+        );*/
     }
 
     private function buildCalendarSubmenu()
@@ -391,10 +512,10 @@ class MenuBuilder
             false
         );
     }
-    
+
     private function getCurrentLoggedInUser()
     {
         return ( ($currentUser = $this->container->get('security.context')->getToken()->getUser() ) && (is_object($currentUser)) ) ? $currentUser : NULL;
     }
-    
+
 }

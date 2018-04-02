@@ -1,0 +1,18 @@
+{% extends 'ZesharCRMCoreBundle::sonata_list.html.twig' %}
+
+{% block sonata_admin_filter_left_column %}
+    <div class="pull-left">
+        {% if is_granted('ROLE_ULTRA_ADMIN') %}
+            <a href="{{ path('account_create') }}"><button type="button" class="btn btn-green"><i class="fa fa-plus"></i>{{ 'Create Account'|trans({}, 'SonataAdminBundle') }}</button></a>
+        {% endif %}
+    </div>
+    {#{% if admin.datagrid.results|length > 0 %}#}
+    {#<input type="button" class="btn btn-green btn-list-search" value="Search"  {% if app.request.attributes.get('_route') == 'admin_zesharcrm_core_operation_list' %} style="margin-left: 840px; margin-top: 13px;" {% endif %}>#}
+    {#{% endif %}#}
+    <div class="pull-right filter-controls">
+        {% if (app.request.attributes.get('_route') == 'admin_zesharcrm_core_operation_list') or (app.request.attributes.get('_route') == 'admin_zesharcrm_core_log_list') %}
+            {% include 'ZesharCRMCoreBundle:ListField:operation_filter_form.html.twig' %}
+        {% endif %}
+        {#<input type="button" class="btn btn-white btn-list-reset" value="Reset Filters">#}
+    </div>
+{% endblock %}
